@@ -1,0 +1,92 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "bitbucket-pr-pipeline",
+  "title": "Bitbucket Branch & PullRequest & Pipeline",
+  "description": "Bitbucket create Pr from branch,\nmerge Pr, create release & Hotfix Pr.\n\nList Pipeline and view logs.",
+  "icon": "bitbucket.svg",
+  "author": "yufei kang",
+  "categories": [
+    "Developer Tools"
+  ],
+  "license": "MIT",
+  "commands": [
+    {
+      "name": "repoList",
+      "title": "List Bitbucket Repos",
+      "description": "List Bitbucket Repositories, And Option branch, pr, release, hotfix, pipeline.",
+      "icon": "bitbucket.svg",
+      "mode": "view"
+    },
+    {
+      "name": "myPullRequestList",
+      "title": "List My Open PullRequest",
+      "description": "List Bitbucket My Open PullRequest.",
+      "icon": "bitbucket.svg",
+      "mode": "view"
+    }
+  ],
+  "preferences": [
+    {
+      "name": "workspace",
+      "title": "Bitbucket Workspace",
+      "description": "Bitbucket Workspace",
+      "type": "textfield",
+      "required": true,
+      "placeholder": "workspace"
+    },
+    {
+      "name": "username",
+      "title": "Bitbucket Username",
+      "description": "Bitbucket Username",
+      "type": "textfield",
+      "required": true
+    },
+    {
+      "name": "password",
+      "title": "Bitbucket App Password",
+      "description": "Bitbucket App Password",
+      "type": "password",
+      "required": true
+    },
+    {
+      "name": "releasePrPrefix",
+      "title": "Release Pr Prefix",
+      "description": "Release PullRequest Prefix, example: Release",
+      "type": "textfield",
+      "default": "Release",
+      "required": false
+    },
+    {
+      "name": "hotfixPrPrefix",
+      "title": "Hotfix Pr Prefix",
+      "description": "hotFix PullRequest Prefix, example: Hotfix",
+      "type": "textfield",
+      "default": "Hotfix",
+      "required": false
+    }
+  ],
+  "dependencies": {
+    "@raycast/api": "^1.33.2",
+    "axios": "^0.27.1",
+    "moment": "^2.29.3",
+    "react": "^18.1.0",
+    "winston": "^3.7.2"
+  },
+  "devDependencies": {
+    "@types/node": "~16.10.0",
+    "@types/react": "^17.0.28",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "axios-debug-log": "^0.8.4",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "prettier": "^2.5.1",
+    "typescript": "^4.4.3"
+  },
+  "scripts": {
+    "build": "ray build -e dist",
+    "dev": "ray develop",
+    "fix-lint": "ray lint --fix",
+    "lint": "ray lint"
+  }
+}
