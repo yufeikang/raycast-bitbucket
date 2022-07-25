@@ -10,6 +10,10 @@ export default function PullRequestDetail({ repo, pullRequest }) {
   pullRequest.reviewers.forEach((reviewer) => {
     detail += `\n\n* ${reviewer.display_name}`;
   });
+  detail += `\n\n### Approved`;
+  pullRequest.participants.filter((participant) => participant.approved).forEach((reviewer) => {
+    detail += `\n\n* ${reviewer.display_name}`;
+  });
   detail += `\n\nCreated on: ${formatDate(pullRequest.created_on)}`;
   detail += `\n\nUpdated on: ${formatDate(pullRequest.updated_on)}`;
 

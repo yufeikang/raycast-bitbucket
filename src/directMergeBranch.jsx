@@ -1,6 +1,7 @@
-import { List, showToast, Toast, ActionPanel, Action, Icon } from "@raycast/api";
+import { List, showToast, Toast, ActionPanel, Action, Icon, useNavigation } from "@raycast/api";
 import { listRepoBranches, createPullRequest } from "./model/bitbucket";
 import { useEffect, useState } from "react";
+
 
 async function mergeBranchAction(repo, fromBranch, destBranch, closeSource = false) {
   const toast = await showToast({
@@ -28,6 +29,9 @@ export default function MergeBranchList({ repo, fromBranch }) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [data, setData] = useState({ values: [] });
   const [keyword, setKeyword] = useState("");
+
+  const { pop } = useNavigation();
+
 
   useEffect(() => {
     setIsLoaded(false);
@@ -67,13 +71,19 @@ export default function MergeBranchList({ repo, fromBranch }) {
                       icon={Icon.ArrowRight}
                       key="merge"
                       title={`To ${branch.name}`}
-                      onAction={mergeBranchAction.bind(null, repo, fromBranch, branch.name)}
+                      onAction={() => {
+                        mergeBranchAction(repo, fromBranch, branch.name);
+                        pop();
+                      }}
                     />
                     <Action
                       icon={Icon.ArrowRight}
                       key="merge_close"
                       title={`To ${branch.name} & Close Source`}
-                      onAction={mergeBranchAction.bind(null, repo, fromBranch, branch.name, true)}
+                      onAction={() => {
+                        mergeBranchAction(repo, fromBranch, branch.name, true);
+                        pop();
+                      }}
                     />
                   </ActionPanel>
                 }

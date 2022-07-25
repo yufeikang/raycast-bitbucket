@@ -26,7 +26,7 @@ export default function MyPullRequestList() {
       searchBarPlaceholder="Search ..."
       key="my-pull-request-list"
     >
-      <List.Section title="My Pull Request" subtitle={data.values.length.toString()}>
+      <List.Section key='my-pr-list-section' title="My Pull Request" subtitle={data.values.length.toString()}>
         {data.values.map((pr) => {
           return renderPullRequestItem(pr, pr.destination.repository);
         })}

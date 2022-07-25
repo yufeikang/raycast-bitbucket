@@ -87,10 +87,15 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@raycast/api@^1.33.2":
-  version "1.33.2"
-  resolved "https://registry.yarnpkg.com/@raycast/api/-/api-1.33.2.tgz#2240792a5bb8a96d3c7f111552c7a4c7a8899f14"
-  integrity sha512-78Kh7fQeYgNUfGUnpRENkiNXrSySEOpyTxQQX7VgU8TZi+npjgT2DkZVkrZDdKTB0kGaJ2tkZ9r0AET/y+OBQA==
+"@raycast/api@^1.38.2":
+  version "1.38.2"
+  resolved "https://registry.yarnpkg.com/@raycast/api/-/api-1.38.2.tgz#462351400ffadb6f8c0d64e6fb6d54fe6906ef9f"
+  integrity sha512-IJKoian6aXdIFPovpkcOolj0dn0DaLJKLlpoqz4+UtU5mbdu9gHVIBPGFzjO4DQIXM9A4SeyBoEUOAHQ+9fRxA==
+  dependencies:
+    "@types/node" "16.10.3"
+    "@types/react" "18.0.9"
+    react "18.1.0"
+    react-reconciler "0.28.0"
 
 "@types/debug@^4.0.0":
   version "4.1.7"
@@ -109,6 +114,11 @@
   resolved "https://registry.yarnpkg.com/@types/ms/-/ms-0.7.31.tgz#31b7ca6407128a3d2bbc27fe2d21b345397f6197"
   integrity sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==
 
+"@types/node@16.10.3":
+  version "16.10.3"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.10.3.tgz#7a8f2838603ea314d1d22bb3171d899e15c57bd5"
+  integrity sha512-ho3Ruq+fFnBrZhUYI46n/bV2GjwzSkwuT4dTf0GkuNFmnb8nq4ny2z9JEVemFi6bdEJanHLlYfy9c6FN9B9McQ==
+
 "@types/node@~16.10.0":
   version "16.10.9"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-16.10.9.tgz#8f1cdd517972f76a3b928298f4c0747cd6fef25a"
@@ -118,6 +128,15 @@
   version "15.7.5"
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.5.tgz#5f19d2b85a98e9558036f6a3cacc8819420f05cf"
   integrity sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==
+
+"@types/react@18.0.9":
+  version "18.0.9"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.0.9.tgz#d6712a38bd6cd83469603e7359511126f122e878"
+  integrity sha512-9bjbg1hJHUm4De19L1cHiW0Jvx3geel6Qczhjd0qY5VKVE2X5+x77YxAepuCwVh4vrgZJdgEJw48zrhRIeF4Nw==
+  dependencies:
+    "@types/prop-types" "*"
+    "@types/scheduler" "*"
+    csstype "^3.0.2"
 
 "@types/react@^17.0.28":
   version "17.0.44"
@@ -1036,7 +1055,15 @@ queue-microtask@^1.2.2:
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
 
-react@^18.1.0:
+react-reconciler@0.28.0:
+  version "0.28.0"
+  resolved "https://registry.yarnpkg.com/react-reconciler/-/react-reconciler-0.28.0.tgz#52ede33c584c9b6d4c9bea02a53d368c5751c9c9"
+  integrity sha512-sGIHDOpgVjRYgsi8NgosDnbkDvvkYFFSF900ZUhUw0+lSBEA5n76TcKFaVkfYMIuYm+7W6mT8Q673DLBfuTxcQ==
+  dependencies:
+    loose-envify "^1.1.0"
+    scheduler "^0.22.0"
+
+react@18.1.0, react@^18.1.0:
   version "18.1.0"
   resolved "https://registry.yarnpkg.com/react/-/react-18.1.0.tgz#6f8620382decb17fdc5cc223a115e2adbf104890"
   integrity sha512-4oL8ivCz5ZEPyclFQXaNksK3adutVS8l2xzZU0cqEFrE9Sb7fC0EFK5uEk74wIreL1DERyjvsU915j1pcT2uEQ==
@@ -1095,6 +1122,13 @@ safe-stable-stringify@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/safe-stable-stringify/-/safe-stable-stringify-2.3.1.tgz#ab67cbe1fe7d40603ca641c5e765cb942d04fc73"
   integrity sha512-kYBSfT+troD9cDA85VDnHZ1rpHC50O0g1e6WlGHVCz/g+JS+9WKLj+XwFYyR8UbrZN8ll9HUpDAAddY58MGisg==
+
+scheduler@^0.22.0:
+  version "0.22.0"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.22.0.tgz#83a5d63594edf074add9a7198b1bae76c3db01b8"
+  integrity sha512-6QAm1BgQI88NPYymgGQLCZgvep4FyePDWFpXVK+zNSUgHwlqpJy8VEh8Et0KxTACS4VWwMousBElAZOH9nkkoQ==
+  dependencies:
+    loose-envify "^1.1.0"
 
 semver@^7.2.1, semver@^7.3.5:
   version "7.3.7"
