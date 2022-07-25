@@ -3,7 +3,7 @@
   "name": "bitbucket-pr-pipeline",
   "title": "Bitbucket Branch & PullRequest & Pipeline",
   "description": "Bitbucket create Pr from branch,\nmerge Pr, create release & Hotfix Pr.\n\nList Pipeline and view logs.",
-  "icon": "bitbucket.svg",
+  "icon": "bitbucket-logo.png",
   "author": "yufei kang",
   "categories": [
     "Developer Tools"
