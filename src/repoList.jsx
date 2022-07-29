@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import RepoDetail from "./repoDetail";
 import RepoSetting from "./repoSetting";
 import { createReleasePr } from "./action";
+import PipelineList from "./pipelineList";
 
 export default function Command() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -44,7 +45,8 @@ export default function Command() {
 function repoActions(repo) {
   return (
     <ActionPanel>
-      <Action.Push icon={Icon.Hammer} title="Repo Details" target={<RepoDetail repo={repo} />} />
+      <Action.Push icon={Icon.Hammer} title="Pull request & Branch" target={<RepoDetail repo={repo} />} />
+      <Action.Push icon={Icon.Hammer} title="Pipeline" target={<PipelineList repo={repo} />} />
       <Action.OpenInBrowser url={getRepoUrl(repo)} />
       <Action
         key="create-release-pr"

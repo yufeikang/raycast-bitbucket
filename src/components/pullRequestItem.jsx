@@ -15,7 +15,7 @@ export function renderPullRequestItem(pr, repo) {
       accessories={[
         {icon: authorIcon, tooltip: "Author"},
         { icon: Icon.TwoPeople, text: `${approvers.length}/${pr.reviewers.length}`, tooltip: "Approved/Reviewers" },
-        { date: new Date(pr.updated_on), tooltip: "Last Updated" },
+        { date: new Date(pr.updated_on), tooltip: "Last Updated", icon: Icon.Clock },
       ]}
       icon="bitbucket-pull-request.svg"
       actions={pullRequestActions(pr, repo)}

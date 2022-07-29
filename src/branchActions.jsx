@@ -51,7 +51,7 @@ export function branchActions(branch, repo, allowPushDetail = true, settings = {
       <Action.Push
         icon={Icon.ArrowRight}
         title="Direct Merge To"
-        target={<MergeBranchList fromBranch={branch} repo={repo} />}
+        target={<MergeBranchList fromBranch={branch} repo={repo} protectedBranch={[developBranchName, mainBranchName]}/>}
       />
       <Action.OpenInBrowser url={branch.links.html.href} />
       <Action

@@ -1,7 +1,6 @@
-import { List, showToast, Toast, ActionPanel, Action, Icon, useNavigation } from "@raycast/api";
+import { List, showToast, Toast, ActionPanel, Action, Icon, useNavigation, confirmAlert } from "@raycast/api";
 import { listRepoBranches, createPullRequest } from "./model/bitbucket";
 import { useEffect, useState } from "react";
-
 
 async function mergeBranchAction(repo, fromBranch, destBranch, closeSource = false) {
   const toast = await showToast({
@@ -25,13 +24,12 @@ async function mergeBranchAction(repo, fromBranch, destBranch, closeSource = fal
   toast.message = `${fromBranch.name} merge to ${destBranch} successfully`;
 }
 
-export default function MergeBranchList({ repo, fromBranch }) {
+export default function MergeBranchList({ repo, fromBranch, protectedBranch = [] }) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [data, setData] = useState({ values: [] });
   const [keyword, setKeyword] = useState("");
 
   const { pop } = useNavigation();
-
 
   useEffect(() => {
     setIsLoaded(false);
@@ -72,8 +70,19 @@ export default function MergeBranchList({ repo, fromBranch }) {
                       key="merge"
                       title={`To ${branch.name}`}
                       onAction={() => {
-                        mergeBranchAction(repo, fromBranch, branch.name);
-                        pop();
+                        if (protectedBranch.includes(branch.name)) {
+                          confirmAlert({ title: "Confirm", message: `Are you sure to merge to ${branch.name}?` }).then(
+                            ({ value }) => {
+                              if (value) {
+                                mergeBranchAction(repo, fromBranch, branch.name);
+                                pop();
+                              }
+                            }
+                          );
+                        } else {
+                          mergeBranchAction(repo, fromBranch, branch.name);
+                          pop();
+                        }
                       }}
                     />
                     <Action
@@ -81,8 +90,19 @@ export default function MergeBranchList({ repo, fromBranch }) {
                       key="merge_close"
                       title={`To ${branch.name} & Close Source`}
                       onAction={() => {
-                        mergeBranchAction(repo, fromBranch, branch.name, true);
-                        pop();
+                        if (protectedBranch.includes(branch.name)) {
+                          confirmAlert({ title: "Confirm", message: `Are you sure to merge to ${branch.name}?` }).then(
+                            ({ value }) => {
+                              if (value) {
+                                mergeBranchAction(repo, fromBranch, branch.name, true);
+                                pop();
+                              }
+                            }
+                          );
+                        } else {
+                          mergeBranchAction(repo, fromBranch, branch.name, true);
+                          pop();
+                        }
                       }}
                     />
                   </ActionPanel>
