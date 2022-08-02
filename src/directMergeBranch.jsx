@@ -72,7 +72,7 @@ export default function MergeBranchList({ repo, fromBranch, protectedBranch = []
                       onAction={() => {
                         if (protectedBranch.includes(branch.name)) {
                           confirmAlert({ title: "Confirm", message: `Are you sure to merge to ${branch.name}?` }).then(
-                            ({ value }) => {
+                            (value) => {
                               if (value) {
                                 mergeBranchAction(repo, fromBranch, branch.name);
                                 pop();
@@ -92,7 +92,7 @@ export default function MergeBranchList({ repo, fromBranch, protectedBranch = []
                       onAction={() => {
                         if (protectedBranch.includes(branch.name)) {
                           confirmAlert({ title: "Confirm", message: `Are you sure to merge to ${branch.name}?` }).then(
-                            ({ value }) => {
+                            (value) => {
                               if (value) {
                                 mergeBranchAction(repo, fromBranch, branch.name, true);
                                 pop();
