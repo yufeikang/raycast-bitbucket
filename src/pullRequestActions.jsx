@@ -1,8 +1,10 @@
 import { ActionPanel, Action, Icon, showToast, Toast, LocalStorage } from "@raycast/api";
+import MergeBranchList from "./directMergeBranch";
 import { declinePullRequest, mergePullRequest, pullRequestAddReviews } from "./model/bitbucket";
 import PullRequestDetail from "./pullRequestDetail";
 
 export function pullRequestActions(pr, repo, allowPushDetail = true) {
+  const protectedBranch = ["develop", "master", "dev", "main"];
   return (
     <ActionPanel>
       {allowPushDetail && (
@@ -62,6 +64,11 @@ export function pullRequestActions(pr, repo, allowPushDetail = true) {
           toast.message = `${pr.title} merge successfully`;
         }}
       />
+      <Action.Push
+        icon={Icon.Hammer}
+        title="Direct Merge To"
+        target={<MergeBranchList fromBranch={pr.source.branch} repo={repo} protectedBranch={protectedBranch} />}
+      />
       <Action
         title="Decline"
         icon={Icon.Hammer}
@@ -80,7 +87,7 @@ export function pullRequestActions(pr, repo, allowPushDetail = true) {
             return;
           }
           toast.style = Toast.Style.Success;
-          toast.message = 'decline successfully';
+          toast.message = "decline successfully";
         }}
       />
     </ActionPanel>
