@@ -37,8 +37,15 @@ async function createPullRequestAction(repo, branch, prPrefix, destName, closeSo
 }
 
 export function branchActions(branch, repo, allowPushDetail = true, settings = {}, branchModel = {}) {
-  const developBranchName = branchModel.development.branch.name || "develop";
-  const mainBranchName = branchModel.production.branch.name || "master";
+  let protectedBranch = ["develop", "master", "dev", "main"];
+  let developBranchName = "develop";
+  let mainBranchName = "master";
+  if (!!branchModel && branchModel.isProtected) {
+    developBranchName = branchModel.development.branch.name || "develop";
+    mainBranchName = branchModel.production.branch.name || "master";
+    protectedBranch = [developBranchName, mainBranchName];
+  }
+
   return (
     <ActionPanel>
       {allowPushDetail && (
@@ -51,7 +58,7 @@ export function branchActions(branch, repo, allowPushDetail = true, settings = {
       <Action.Push
         icon={Icon.ArrowRight}
         title="Direct Merge To"
-        target={<MergeBranchList fromBranch={branch} repo={repo} protectedBranch={[developBranchName, mainBranchName]}/>}
+        target={<MergeBranchList fromBranch={branch} repo={repo} protectedBranch={protectedBranch} />}
       />
       <Action.OpenInBrowser url={branch.links.html.href} />
       <Action
