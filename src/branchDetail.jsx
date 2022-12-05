@@ -2,7 +2,6 @@ import { Detail } from "@raycast/api";
 import { branchActions } from "./branchActions";
 import { formatDate } from "./utils/datetime";
 
-
 export default function BranchDetail({ repo, branch, settings, branchModel }) {
   let detail = `### ${branch.name}`;
   detail += `\n\n> ${branch.target.message.replace(/\n/g, "\n> ")}`;

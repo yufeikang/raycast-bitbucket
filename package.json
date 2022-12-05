@@ -4,7 +4,8 @@
   "title": "Bitbucket Branch & PullRequest & Pipeline",
   "description": "Bitbucket create Pr from branch,\nmerge Pr, create release & Hotfix Pr.\n\nList Pipeline and view logs.",
   "icon": "bitbucket-logo.png",
-  "author": "yufei kang",
+  "owner": "kang",
+  "author": "yufeikang",
   "categories": [
     "Developer Tools"
   ],
@@ -66,15 +67,13 @@
     }
   ],
   "dependencies": {
-    "@raycast/api": "^1.38.2",
+    "@raycast/api": "^1.44.0",
     "axios": "^0.27.1",
     "moment": "^2.29.3",
-    "react": "^18.1.0",
     "winston": "^3.7.2"
   },
   "devDependencies": {
-    "@types/node": "~16.10.0",
-    "@types/react": "^17.0.28",
+    "@types/node": "^18.8.3",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "axios-debug-log": "^0.8.4",

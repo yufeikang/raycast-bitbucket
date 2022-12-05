@@ -2,7 +2,6 @@ import { Detail } from "@raycast/api";
 import { pullRequestActions } from "./pullRequestActions";
 import { formatDate } from "./utils/datetime";
 
-
 export default function PullRequestDetail({ repo, pullRequest }) {
   let detail = `### ${pullRequest.title}`;
   detail += `\n\n> ${pullRequest.description}`;
@@ -11,9 +10,11 @@ export default function PullRequestDetail({ repo, pullRequest }) {
     detail += `\n\n* ${reviewer.display_name}`;
   });
   detail += `\n\n### Approved`;
-  pullRequest.participants.filter((participant) => participant.approved).forEach((reviewer) => {
-    detail += `\n\n* ${reviewer.display_name}`;
-  });
+  pullRequest.participants
+    .filter((participant) => participant.approved)
+    .forEach((reviewer) => {
+      detail += `\n\n* ${reviewer.display_name}`;
+    });
   detail += `\n\nCreated on: ${formatDate(pullRequest.created_on)}`;
   detail += `\n\nUpdated on: ${formatDate(pullRequest.updated_on)}`;
 

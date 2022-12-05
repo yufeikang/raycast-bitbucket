@@ -1,4 +1,4 @@
-import { ActionPanel, Action, Icon, showToast, Toast, Clipboard, getPreferenceValues } from "@raycast/api";
+import { ActionPanel, Action, Icon, showToast, Toast, Clipboard, getPreferenceValues, showHUD } from "@raycast/api";
 import moment from "moment";
 import BranchDetail from "./branchDetail";
 import MergeBranchList from "./directMergeBranch";
@@ -28,11 +28,13 @@ async function createPullRequestAction(repo, branch, prPrefix, destName, closeSo
   } catch (e) {
     toast.style = Toast.Style.Failure;
     toast.message = `Error: ${e.response.data.error.message}`;
+    showHUD(`Error: ${e.response.data.error.message}`);
     return;
   }
 
   toast.style = Toast.Style.Success;
   toast.message = `Successfully, Copied to clipboard`;
+  showHUD(`Successfully, Copied to clipboard`);
   Clipboard.copy(pr.links.html.href);
 }
 
@@ -40,7 +42,7 @@ export function branchActions(branch, repo, allowPushDetail = true, settings = {
   let protectedBranch = ["develop", "master", "dev", "main"];
   let developBranchName = "develop";
   let mainBranchName = "master";
-  if (!!branchModel && branchModel.isProtected) {
+  if (branchModel) {
     developBranchName = branchModel.development.branch.name || "develop";
     mainBranchName = branchModel.production.branch.name || "master";
     protectedBranch = [developBranchName, mainBranchName];

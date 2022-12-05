@@ -46,7 +46,6 @@ export default function RepoSetting({ repo }) {
             <Form.TagPicker.Item key={user.uuid} value={user.uuid} title={user.nickname} icon={getAuthorAvatar(user)} />
           ))}
       </Form.TagPicker>
-
     </Form>
   );
 }

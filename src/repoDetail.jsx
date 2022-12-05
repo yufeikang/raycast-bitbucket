@@ -47,6 +47,7 @@ export default function RepoDetail({ repo }) {
             <List.Item
               key={branch.name}
               title={branch.name}
+              subtitle={branch.target.message}
               icon="bitbucket-branch.svg"
               accessoryTitle={`Created by : ${user.nickname} `}
               actions={branchActions(branch, repo, true, settings, branchModel)}

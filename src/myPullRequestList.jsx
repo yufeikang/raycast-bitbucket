@@ -20,13 +20,8 @@ export default function MyPullRequestList() {
   }, []);
 
   return (
-    <List
-      isLoading={!isLoaded}
-      throttle={true}
-      searchBarPlaceholder="Search ..."
-      key="my-pull-request-list"
-    >
-      <List.Section key='my-pr-list-section' title="My Pull Request" subtitle={data.values.length.toString()}>
+    <List isLoading={!isLoaded} throttle={true} searchBarPlaceholder="Search ..." key="my-pull-request-list">
+      <List.Section key="my-pr-list-section" title="My Pull Request" subtitle={data.values.length.toString()}>
         {data.values.map((pr) => {
           return renderPullRequestItem(pr, pr.destination.repository);
         })}

@@ -7,8 +7,8 @@ import { createReleasePr } from "./action";
 import PipelineList from "./pipelineList";
 
 export default function Command() {
-  const [isLoaded, setIsLoaded] = useState(false);
   const [data, setData] = useState({ values: [] });
+  const [isLoaded, setIsLoaded] = useState(false);
   const [keyword, setKeyword] = useState("");
 
   useEffect(() => {
