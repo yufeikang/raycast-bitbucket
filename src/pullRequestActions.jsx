@@ -14,8 +14,11 @@ export function pullRequestActions(pr, repo, allowPushDetail = true) {
           target={<PullRequestDetail repo={repo} pullRequest={pr} />}
         />
       )}
-      <Action.OpenInBrowser title="Open In Browser" url={pr.links.html.href} />
-      <Action.CopyToClipboard title="Copy Url" content={pr.links.html.href} />
+      <Action.Push
+        icon={Icon.Hammer}
+        title="Direct Merge To"
+        target={<MergeBranchList fromBranch={pr.source.branch} repo={repo} protectedBranch={protectedBranch} />}
+      />
       <Action
         title="Add Reviewer"
         icon={Icon.Hammer}
@@ -64,11 +67,8 @@ export function pullRequestActions(pr, repo, allowPushDetail = true) {
           toast.message = `${pr.title} merge successfully`;
         }}
       />
-      <Action.Push
-        icon={Icon.Hammer}
-        title="Direct Merge To"
-        target={<MergeBranchList fromBranch={pr.source.branch} repo={repo} protectedBranch={protectedBranch} />}
-      />
+      <Action.OpenInBrowser title="Open In Browser" url={pr.links.html.href} />
+      <Action.CopyToClipboard title="Copy Url" content={pr.links.html.href} />
       <Action
         title="Decline"
         icon={Icon.Hammer}

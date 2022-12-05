@@ -24,6 +24,14 @@
       "description": "List Bitbucket My Open PullRequest.",
       "icon": "bitbucket.svg",
       "mode": "view"
+    },
+    {
+      "name": "myPullRequestListForMenu",
+      "title": "Refresh My Open PullRequest",
+      "description": "List Bitbucket My Open PullRequest.",
+      "icon": "bitbucket.svg",
+      "mode": "menu-bar",
+      "interval": "10m"
     }
   ],
   "preferences": [
@@ -68,6 +76,7 @@
   ],
   "dependencies": {
     "@raycast/api": "^1.44.0",
+    "@raycast/utils": "^1.4.11",
     "axios": "^0.27.1",
     "moment": "^2.29.3",
     "winston": "^3.7.2"

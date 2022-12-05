@@ -10,3 +10,7 @@ export function formatDate(date, format) {
   }
   return moment(date).format(format);
 }
+
+export function timestamp(date) {
+  return moment(date).unix();
+}

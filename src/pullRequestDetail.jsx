@@ -4,7 +4,7 @@ import { formatDate } from "./utils/datetime";
 
 export default function PullRequestDetail({ repo, pullRequest }) {
   let detail = `### ${pullRequest.title}`;
-  detail += `\n\n> ${pullRequest.description}`;
+  detail += `\n\n>  ${pullRequest.summary.raw}`;
   detail += `\n\n### Reviewers`;
   pullRequest.reviewers.forEach((reviewer) => {
     detail += `\n\n* ${reviewer.display_name}`;
