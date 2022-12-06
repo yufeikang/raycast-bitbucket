@@ -26,7 +26,7 @@
       "mode": "view"
     },
     {
-      "name": "myPullRequestListForMenu",
+      "name": "myPullRequestListMenu",
       "title": "Refresh My Open PullRequest",
       "description": "List Bitbucket My Open PullRequest.",
       "icon": "bitbucket.svg",

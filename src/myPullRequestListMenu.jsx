@@ -1,5 +1,5 @@
 import { environment, MenuBarExtra } from "@raycast/api";
-import { useCachedPromise } from "@raycast/utils";
+import { getProgressIcon, useCachedPromise } from "@raycast/utils";
 import { useState } from "react";
 import { renderPullRequestMenuItem } from "./components/pullRequestItem";
 import { listMyPullRequests } from "./model/bitbucket";
@@ -17,14 +17,6 @@ function groupByProject(prs) {
   return Object.entries(grouped);
 }
 
-async function checkPr(pr) {
-  if (timestamp(pr.updated_on) + 1000 * 60 < new Date().getTime()) {
-    return;
-  }
-  console.log(pr);
-  // TODO
-}
-
 export default function MyPullRequestList() {
 
   const [lastUpdateTime, setLastUpdateTime] = useState(null);
@@ -33,9 +25,6 @@ export default function MyPullRequestList() {
     console.log("pr: update data");
     const _data = await listMyPullRequests();
     setLastUpdateTime(new Date());
-    if (environment.launchType === "background") {
-      _data.values.forEach(checkPr);
-    }
     return _data;
   }, [], { keepPreviousData: true, initialData: { values: [] } });
 
@@ -47,13 +36,15 @@ export default function MyPullRequestList() {
       tooltip="My bitbucket pull request"
       title="My PR"
       icon="bitbucket-pull-request.svg">
-      <MenuBarExtra.Item title={(() => {
-        if (lastUpdateTime) {
-          return `Last updated: ${lastUpdateTime.toLocaleString()}`;
-        } else {
-          return "Loading...";
-        }
-      })()} />
+      <MenuBarExtra.Item
+        icon={getProgressIcon(isLoading ? 0.5 : 1)}
+        title={(() => {
+          if (lastUpdateTime) {
+            return `Last updated: ${lastUpdateTime.toLocaleString()}`;
+          } else {
+            return "Loading...";
+          }
+        })()} />
 
       {groupByProject(data.values)
         .sort((a, b) => timestamp(b[1][0].updated_on) - timestamp(a[1][0].updated_on))

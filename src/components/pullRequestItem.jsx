@@ -1,5 +1,6 @@
 import { List, Icon, MenuBarExtra, open } from "@raycast/api";
 import { getAuthorAvatar } from "../utils/utils";
+import { mergePullRequest, declinePullRequest } from "../model/bitbucket";
 import { pullRequestActions } from "../pullRequestActions";
 
 export function renderPullRequestItem(pr, repo) {
@@ -37,6 +38,8 @@ export function renderPullRequestMenuItem(pr, repo) {
         onAction={async () => {
           await open(pr.links.html.href);
         }} />
+      <MenuBarExtra.Item icon={Icon.Bolt} title="Merge" onAction={() => mergePullRequest(repo, pr.id)} />
+      <MenuBarExtra.Item icon={Icon.XMarkCircle} title="Decline" onAction={() => declinePullRequest(repo, pr.id)} />
       <MenuBarExtra.Item icon={authorIcon} title={pr.author.display_name} />
       <MenuBarExtra.Item icon={Icon.TwoPeople} title={`${approvers.length}/${pr.reviewers.length}`} />
       <MenuBarExtra.Item icon={Icon.Clock} title={`Last Update: ${pr.updated_on}`} />
