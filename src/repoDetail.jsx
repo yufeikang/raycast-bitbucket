@@ -12,6 +12,7 @@ export default function RepoDetail({ repo }) {
   const [settings, setSettings] = useState({});
   const [branchModel, setBranchModel] = useState({});
   const [settingsIsLoading, setSettingIsLoading] = useState(false);
+  const [keyword, setKeyword] = useState("");
 
   useEffect(() => {
     getBranchModel(repo).then((_branchModel) => {
@@ -20,11 +21,11 @@ export default function RepoDetail({ repo }) {
     setBranchesIsLoading(true);
     setPrIsLoading(true);
     setSettingIsLoading(true);
-    listRepoBranches(repo).then((data) => {
+    listRepoBranches(repo, keyword).then((data) => {
       setBranches(data);
       setBranchesIsLoading(false);
     });
-    listRepoPullRequests(repo).then((data) => {
+    listRepoPullRequests(repo, keyword).then((data) => {
       setPullRequests(data);
       setPrIsLoading(false);
     });
@@ -32,9 +33,15 @@ export default function RepoDetail({ repo }) {
       setSettings(JSON.parse(data || "{}"));
       setSettingIsLoading(false);
     });
-  }, []);
+  }, [keyword]);
   return (
-    <List isLoading={prIsLoading && branchesIsLoading && settingsIsLoading} navigationTitle={`${repo.name} Detail`}>
+    <List
+      isLoading={prIsLoading && branchesIsLoading && settingsIsLoading}
+      searchText={keyword}
+      throttle={true}
+      onSearchTextChange={setKeyword}
+      searchBarPlaceholder="Search by branch'name pr'title ..."
+      navigationTitle={`${repo.name} Detail`}>
       <List.Section key="label_pr" title="Pull requests">
         {pullRequests.values.map((pr) => {
           return renderPullRequestItem(pr, repo);

@@ -53,35 +53,38 @@ export async function getBranchModel(repo) {
 export async function listRepoBranches(repo, keyword = "") {
   // list bitbucket repo branches
   const url = `/2.0/repositories/${preferenceValues.workspace}/${repo.slug}/refs/branches`;
-  const params = { pagelen: 30 };
+  const params = { pagelen: 30, fields: "+values.date" };
   if (keyword !== "") {
     params.q = `name~"${keyword}"`;
   }
   const response = await instance.get(url, {
     params,
-    fields: "+values.date",
   });
   return response.data;
 }
 
-export async function listRepoPullRequests(repo) {
+export async function listRepoPullRequests(repo, keyword = "") {
   // list bitbucket repo pull requests
   const url = `/2.0/repositories/${preferenceValues.workspace}/${repo.slug}/pullrequests`;
+  const params = {
+    fields: [
+      "+values.target.commit.message",
+      "values.uuid",
+      "+values.target.selector.type+values.target.selector.pattern+values.target.commit.summary.html",
+      "+values.target.*",
+      "+values.*",
+      "+values.destination.repository",
+      "+values.destination.branch",
+      "+page",
+      "+size",
+    ].join(","),
+    sort: "-created_on",
+  };
+  if (keyword !== "") {
+    params.q = `title~"${keyword}" AND state="OPEN"`;
+  }
   const response = await instance.get(url, {
-    params: {
-      fields: [
-        "+values.target.commit.message",
-        "values.uuid",
-        "+values.target.selector.type+values.target.selector.pattern+values.target.commit.summary.html",
-        "+values.target.*",
-        "+values.*",
-        "+values.destination.repository",
-        "+values.destination.branch",
-        "+page",
-        "+size",
-      ].join(","),
-      sort: "-created_on",
-    },
+    params
   });
   return response.data;
 }

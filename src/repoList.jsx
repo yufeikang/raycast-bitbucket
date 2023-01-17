@@ -32,7 +32,7 @@ export default function Command() {
       searchBarPlaceholder="Search by name..."
       key="projects-list"
     >
-      <List.Section title="Repositories" subtitle={data.values.length.toString()}>
+      <List.Section title="Repositories" key="rep" subtitle={data.values.length.toString()}>
         {data.values.length === 0
           ? () => <List.EmptyView title="No Project Found" />
           : data.values.map((repo) => (
@@ -52,7 +52,7 @@ function repoActions(repo) {
         key="create-release-pr"
         title="Release Pull Request"
         icon={Icon.Hammer}
-        onAction={() => createReleasePr(repo)}
+        onAction={() => createReleasePr(repo)} // nosonar
       />
       <Action.Push key="setting" title="Setting" icon={Icon.Hammer} target={<RepoSetting repo={repo} />} />
     </ActionPanel>
