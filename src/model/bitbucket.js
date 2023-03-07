@@ -231,7 +231,7 @@ export async function listMyPullRequests() {
       "+size",
     ].join(","),
     sort: "-updated_on",
-    pagelen: 100,
+    pagelen: 50,
   };
 
   const response = await instance.get(url, {
