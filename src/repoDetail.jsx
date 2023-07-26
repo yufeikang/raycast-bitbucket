@@ -41,7 +41,8 @@ export default function RepoDetail({ repo }) {
       throttle={true}
       onSearchTextChange={setKeyword}
       searchBarPlaceholder="Search by branch'name pr'title ..."
-      navigationTitle={`${repo.name} Detail`}>
+      navigationTitle={`${repo.name} Detail`}
+    >
       <List.Section key="label_pr" title="Pull requests">
         {pullRequests.values.map((pr) => {
           return renderPullRequestItem(pr, repo);

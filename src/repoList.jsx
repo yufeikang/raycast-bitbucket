@@ -45,7 +45,7 @@ export default function Command() {
 function repoActions(repo) {
   return (
     <ActionPanel>
-      <Action.Push icon={Icon.Hammer} title="Pull request & Branch" target={<RepoDetail repo={repo} />} />
+      <Action.Push icon={Icon.Hammer} title="Pull Request & Branch" target={<RepoDetail repo={repo} />} />
       <Action.Push icon={Icon.Hammer} title="Pipeline" target={<PipelineList repo={repo} />} />
       <Action.OpenInBrowser url={getRepoUrl(repo)} />
       <Action

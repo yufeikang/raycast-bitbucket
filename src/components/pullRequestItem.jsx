@@ -37,7 +37,8 @@ export function renderPullRequestMenuItem(pr, repo) {
         icon={Icon.Link}
         onAction={async () => {
           await open(pr.links.html.href);
-        }} />
+        }}
+      />
       <MenuBarExtra.Item icon={Icon.Bolt} title="Merge" onAction={() => mergePullRequest(repo, pr.id)} />
       <MenuBarExtra.Item icon={Icon.XMarkCircle} title="Decline" onAction={() => declinePullRequest(repo, pr.id)} />
       <MenuBarExtra.Item icon={authorIcon} title={pr.author.display_name} />

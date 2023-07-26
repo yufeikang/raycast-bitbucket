@@ -84,7 +84,7 @@ export async function listRepoPullRequests(repo, keyword = "") {
     params.q = `title~"${keyword}" AND state="OPEN"`;
   }
   const response = await instance.get(url, {
-    params
+    params,
   });
   return response.data;
 }

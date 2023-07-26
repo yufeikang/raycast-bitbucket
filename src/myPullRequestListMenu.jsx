@@ -18,24 +18,30 @@ function groupByProject(prs) {
 }
 
 export default function MyPullRequestList() {
-
   const [lastUpdateTime, setLastUpdateTime] = useState(null);
 
-  const { isLoading, data } = useCachedPromise(async () => {
-    console.log("pr: update data");
-    const _data = await listMyPullRequests();
-    setLastUpdateTime(new Date());
-    return _data;
-  }, [], { keepPreviousData: true, initialData: { values: [] } });
+  const { isLoading, data } = useCachedPromise(
+    async () => {
+      console.log("pr: update data");
+      const _data = await listMyPullRequests();
+      setLastUpdateTime(new Date());
+      return _data;
+    },
+    [],
+    { keepPreviousData: true, initialData: { values: [] } }
+  );
 
-  console.log(`rendering ${data.values.length} pull requests, launchType: ${environment.launchType}, loading: ${isLoading}, lastUpdateTime: ${lastUpdateTime}`);
+  console.log(
+    `rendering ${data.values.length} pull requests, launchType: ${environment.launchType}, loading: ${isLoading}, lastUpdateTime: ${lastUpdateTime}`
+  );
   return (
     <MenuBarExtra
       isLoading={isLoading}
       key="my-pr-list-section"
       tooltip="My bitbucket pull request"
       title="My PR"
-      icon="bitbucket-pull-request.svg">
+      icon="bitbucket-pull-request.svg"
+    >
       <MenuBarExtra.Item
         icon={getProgressIcon(isLoading ? 0.5 : 1)}
         title={(() => {
@@ -44,7 +50,8 @@ export default function MyPullRequestList() {
           } else {
             return "Loading...";
           }
-        })()} />
+        })()}
+      />
 
       {groupByProject(data.values)
         .sort((a, b) => timestamp(b[1][0].updated_on) - timestamp(a[1][0].updated_on))
