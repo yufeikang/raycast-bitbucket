@@ -57,7 +57,11 @@ export default function RepoDetail({ repo }) {
               title={branch.name}
               subtitle={branch.target.message}
               icon="bitbucket-branch.svg"
-              accessoryTitle={`Created by : ${user.nickname} `}
+              accessories={[
+                {
+                  title: `Created by ${user.nickname}`
+                },
+              ]}
               actions={branchActions(branch, repo, true, settings, branchModel)}
             />
           );

@@ -42,10 +42,13 @@ export function branchActions(branch, repo, allowPushDetail = true, settings = {
   let protectedBranch = ["develop", "master", "dev", "main"];
   let developBranchName = "develop";
   let mainBranchName = "master";
-  if (branchModel) {
+  if (branchModel.development) {
     developBranchName = branchModel.development.branch.name || "develop";
+    protectedBranch.push(developBranchName);
+  }
+  if (branchModel.production) {
     mainBranchName = branchModel.production.branch.name || "master";
-    protectedBranch = [developBranchName, mainBranchName];
+    protectedBranch.push(mainBranchName);
   }
 
   return (
